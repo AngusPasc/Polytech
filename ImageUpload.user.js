@@ -1,9 +1,8 @@
 // ==UserScript==
 // @name           ImageUpload
 // @version        0.1
-// @updateURL	   
-// @downloadURL    
-// @grant none
+// @updateURL	   https://goo.gl/LKriiH
+// @downloadURL    https://goo.gl/LKriiH
 // @author         NikitaCartes
 // @description    Изменение загрузки пикчи
 // @description    Загрузка картинок из буфера обмена
