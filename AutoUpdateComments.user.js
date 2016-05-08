@@ -64,6 +64,9 @@ window.NextComment = function () {
 }
 
 var arr=document.getElementsByClassName('comment-new');
+for(var t=0; t<arr.length;t++) {		
+		arr[t].className ="comment  comment-new comment-new-script";
+}
 var but = document.createElement('a');
 but.innerHTML='<div id="SomeId" onclick="NextComment(); return false;"><img src="https://cdn.everypony.ru/storage/00/44/24/2016/05/08/dbb49ab87d.png"></div>';
 update.insertBefore(but, update.children[2]);
