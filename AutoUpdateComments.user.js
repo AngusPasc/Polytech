@@ -4,8 +4,8 @@
 // @updateURL	   
 // @downloadURL    
 // @grant none
-// @author         NikitaCartes
-// @description    Автоматическое комментах
+// @author         NikitaCartes, Farxial
+// @description    Автоматическое обновление комментариев
 // @include        https://tabun.everypony.ru/talk/read/*
 // @include        http://tabun.everypony.ru/talk/read/*
 // @include        https://tabun.everypony.ru/blog/*
