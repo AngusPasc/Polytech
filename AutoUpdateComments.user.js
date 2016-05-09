@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           AutoUpdateComments
-// @version        0.1
+// @version        0.2
 // @updateURL	   
 // @downloadURL    
 // @grant none
@@ -14,60 +14,45 @@
 // ==/UserScript==
 
 
-
-
-var arr = location.pathname.split('/');
-if (arr.length==3)	{
-	var num = parseInt(arr[2].substring(0,6));
-	var url = 'topic';
+window.LoadFunctionNCS = function (LoadButtonNCS) {
+	LoadButtonNCS.click();
+	setTimeout(LoadFunctionNCS2, 2000);	
 }
-else {
-	if (arr[1]=="talk"){
-		var num = parseInt(arr[3].substring(0,6));
-		var url ='talk';
+
+window.LoadFunctionNCS2 = function () {
+	var NewComScrNCS=document.getElementsByClassName('comment-new-scriptNCS');
+	for(var t=0; t<NewComScrNCS.length;t++) {		
+		NewComScrNCS[t].classList.add("comment-new");
 	}
-	else{
-		var num = parseInt(arr[3].substring(0,6));
-		var url = 'topic';
+	var NewComNCS=document.getElementsByClassName('comment-new');
+	for(var t=0; t<NewComNCS.length;t++) {		
+		NewComNCS[t].classList.add("comment-new-scriptNCS");
 	}
 }
 
-window.SomeFun2 = function () {
-	var NewCom=document.getElementsByClassName('comment-new');
-	for(var t=0; t<NewCom.length;t++) {		
-		NewCom[t].className ="comment  comment-new comment-new-script";
-	}
-	var arr2=document.getElementsByClassName('comment-new-script');
-	for(var t=0; t<arr2.length;t++) {		
-		arr2[t].className ="comment  comment-new comment-new-script";
-	}
-}
 
-window.SomeFun = function (num,url) {
-	var arr2=document.getElementsByClassName('comment-new');
-	for(var t=0; t<arr2.length;t++) {		
-		arr2[t].className ="comment   comment-new-script";
+window.NextCommentNCS = function () {
+	var tmpNCS=document.getElementsByClassName('comment-current');
+	for(var t=0; t<tmpNCS.length;t++) {		
+		tmpNCS[t].classList.remove('comment-current');
 	}
-	ls.comments.load(num,url);
-	setTimeout(SomeFun2, 2000);	
-}
-window.NextComment = function () {
-	var tmp=document.getElementsByClassName('comment-current');
-	for(var t=0; t<tmp.length;t++) {		
-		tmp[t].className ="comment";
-	}
-	var idhref=document.getElementsByClassName('comment-new-script');
-	var temp = '#comment'+(idhref[0].id).substring(11,19);
-	idhref[0].className ="comment comment-current";
-	return location.href = temp;
+	var idComNCS=document.getElementsByClassName('comment-new-scriptNCS');
+	var hrefNCS = '#comment'+(idComNCS[0].id).substring(11,19);
+	idComNCS[0].classList.add("comment-current");
+	idComNCS[0].classList.remove('comment-new-scriptNCS', 'comment-new');
+	alert(idComNCS.length);
+	return location.href = hrefNCS;
 	
 }
-
-var arr=document.getElementsByClassName('comment-new');
-for(var t=0; t<arr.length;t++) {		
-		arr[t].className ="comment  comment-new comment-new-script";
-}
-var but = document.createElement('a');
-but.innerHTML='<div id="SomeId" onclick="NextComment(); return false;"><img src="https://cdn.everypony.ru/storage/00/44/24/2016/05/08/dbb49ab87d.png"></div>';
-update.insertBefore(but, update.children[2]);
-setTimeout(function run() {SomeFun(num, url);setTimeout(run, 10000);}, 10000);
+$(document).ready(function(){
+	var LoadButtonNCS=document.getElementById('update-comments');
+	var FirstComNCS=document.getElementsByClassName('comment-new');
+	for(var t=0; t<FirstComNCS.length;t++) {		
+		FirstComNCS[t].classList.add("comment-new-scriptNCS");
+	}
+	var NewButtonNCS = document.createElement('div');
+	NewButtonNCS.id="NewButtonNCS";
+	NewButtonNCS.innerHTML='<div onclick="NextCommentNCS(); return false;"><img src="https://cdn.everypony.ru/storage/00/44/24/2016/05/08/dbb49ab87d.png"></div>';
+	update.insertBefore(NewButtonNCS, update.children[2]);
+	setTimeout(function run() {LoadFunctionNCS(LoadButtonNCS);setTimeout(run, 10000);}, 10000);
+});
