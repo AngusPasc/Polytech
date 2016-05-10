@@ -41,7 +41,11 @@ window.LoadFunctionNCS2 = function () {
 window.ReadAllCommentNCS = function () {
 	var NewComScrNCS=document.getElementsByClassName('comment-new-scriptNCS');
 	for(var t=0; t<NewComScrNCS.length;t++) {		
-		NewComScrNCS[t].classList.remove('comment-new-scriptNCS', 'comment-new');
+		NewComScrNCS[t].classList.remove('comment-new-scriptNCS');
+	}
+	NewComScrNCS=document.getElementsByClassName('comment-new');
+	for(var t=0; t<NewComScrNCS.length;t++) {		
+		NewComScrNCS[t].classList.remove('comment-new');
 	}
 	document.getElementById('new_comments_counter').innerHTML=0;
 }
