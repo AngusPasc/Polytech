@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           AutoUpdateComments
-// @version        1.1
+// @version        1.2
 // @updateURL	   
 // @downloadURL    
 // @grant none
@@ -43,6 +43,7 @@ window.ReadAllCommentNCS = function () {
 	for(var t=0; t<NewComScrNCS.length;t++) {		
 		NewComScrNCS[t].classList.remove('comment-new-scriptNCS');
 	}
+	document.getElementById('new_comments_counter').innerHTML=0;
 }
 window.NextCommentNCS2 = function () {
 	NextCommentNCS();
@@ -65,14 +66,14 @@ window.NextCommentNCS = function () {
 
 $(document).ready(function(){
 	var LoadButtonNCS=document.getElementById('update-comments');
-	var NewButtonNCS = document.createElement('div');
-	NewButtonNCS.id="NewButtonNCS";
-	NewButtonNCS.innerHTML='<div onclick="ReadAllCommentNCS(); return false;"><img src="https://cdn.everypony.ru/storage/00/44/24/2016/05/10/1745cecf7d.png" width="23"></div>';
+	var NewButtonNCS = document.createElement('a');
+	NewButtonNCS.innerHTML='<a id="NewButtonNCS" onclick="ReadAllCommentNCS(); return false;"><img src="https://cdn.everypony.ru/storage/00/44/24/2016/05/10/1745cecf7d.png" width="23"></a>';
 	update.insertBefore(NewButtonNCS, update.children[0]);
 	LoadFunctionNCS(LoadButtonNCS);
 	document.getElementById('new_comments_counter').onclick=function(){
 		NextCommentNCS2();
 	}
-	$(".update-comments").remove();
-	setTimeout(function run() {LoadFunctionNCS(LoadButtonNCS);setTimeout(run, 30000);}, 30000);
+	document.getElementById('update-comments').style.display = "none";
+	setTimeout(function run() {LoadFunctionNCS(LoadButtonNCS);setTimeout(run, 10000);}, 10000);
 });
+
