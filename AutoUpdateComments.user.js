@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name           AutoUpdateComments
-// @version        1.0
+// @version        1.1
 // @updateURL	   
 // @downloadURL    
 // @grant none
 // @author         NikitaCartes
-// @author         А также: Farxial
+// @author         Помогал пуся Farxial
 // @description    Автоматическое обновление комментариев
 // @include        https://tabun.everypony.ru/talk/read/*
 // @include        http://tabun.everypony.ru/talk/read/*
@@ -73,6 +73,6 @@ $(document).ready(function(){
 	document.getElementById('new_comments_counter').onclick=function(){
 		NextCommentNCS2();
 	}
-
+	$(".update-comments").remove();
 	setTimeout(function run() {LoadFunctionNCS(LoadButtonNCS);setTimeout(run, 30000);}, 30000);
 });
