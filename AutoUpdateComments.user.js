@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name           AutoUpdateComments
-// @version        1.2.1
-// @updateURL	   
-// @downloadURL    
+// @version        2.0
+// @updateURL	   https://github.com/NikitaCartes/Tabun/raw/master/AutoUpdateComments.user.js
+// @downloadURL    https://github.com/NikitaCartes/Tabun/raw/master/AutoUpdateComments.user.js
 // @grant none
-// @author         NikitaCartes
-// @author         Помогал пуся Farxial
+// @author         NikitaCartes и ультрапуся Farxial
 // @description    Автоматическое обновление комментариев
 // @include        https://tabun.everypony.ru/talk/read/*
 // @include        http://tabun.everypony.ru/talk/read/*
@@ -15,74 +14,27 @@
 // ==/UserScript==
 
 
-window.LoadFunctionNCS = function (LoadButtonNCS) {
-	var NewComNCS=document.getElementsByClassName('comment-new');
-	for(var t=0; t<NewComNCS.length;t++) {		
-		NewComNCS[t].classList.add("comment-new-scriptNCS");
-	}
-	LoadButtonNCS.click();
-	setTimeout(LoadFunctionNCS2, 2000);	
-}
-
-window.LoadFunctionNCS2 = function () {
-	var NewComScrNCS=document.getElementsByClassName('comment-new-scriptNCS');
-	for(var t=0; t<NewComScrNCS.length;t++) {		
-		NewComScrNCS[t].classList.add("comment-new");
-	}
-	var NewComNCS=document.getElementsByClassName('comment-new');
-	for(var t=0; t<NewComNCS.length;t++) {		
-		NewComNCS[t].classList.add("comment-new-scriptNCS");
-	}
-	var tempNCS=document.getElementsByClassName('new-comments h-hidden');
-	tempNCS[0].classList.remove('h-hidden');
-	document.getElementById('new_comments_counter').innerHTML=NewComScrNCS.length;
-}
-
-window.ReadAllCommentNCS = function (intNCS) {
-	var NewComScrNCS=document.getElementsByClassName('comment-new-scriptNCS');
-	for(var t=0; t<NewComScrNCS.length;t++) {		
-		NewComScrNCS[t].classList.remove('comment-new-scriptNCS');
-	}
-	NewComScrNCS=document.getElementsByClassName('comment-new');
-	for(var t=0; t<NewComScrNCS.length;t++) {		
-		NewComScrNCS[t].classList.remove('comment-new');
-	}
-	if(intNCS==0){
-			return;
-		}
-	else{
-		ReadAllCommentNCS(intNCS-1);
-	}
-	document.getElementById('new_comments_counter').innerHTML=0;
-}
-window.NextCommentNCS2 = function () {
-	NextCommentNCS();
-	window.scrollBy(0, -(document.documentElement.clientHeight/4));
-}
-window.NextCommentNCS = function () {
-	var tmpNCS=document.getElementsByClassName('comment-current');
-	for(var t=0; t<tmpNCS.length;t++) {		
-		tmpNCS[t].classList.remove('comment-current');
-	}
-	var idComNCS=document.getElementsByClassName('comment-new-scriptNCS');
-	var hrefNCS = '#comment'+(idComNCS[0].id).substring(11,19);
-	idComNCS[0].classList.add("comment-current");
-	idComNCS[0].classList.remove('comment-new-scriptNCS', 'comment-new');
-	//alert(idComNCS.length);
-	document.getElementById('new_comments_counter').innerHTML=idComNCS.length;
-	return location.href = hrefNCS;
-}
-
-
 $(document).ready(function(){
-	var LoadButtonNCS=document.getElementById('update-comments');
-	var NewButtonNCS = document.createElement('a');
-	NewButtonNCS.innerHTML='<a id="NewButtonNCS" onclick="ReadAllCommentNCS(5); return false;"><img src="https://cdn.everypony.ru/storage/00/44/24/2016/05/10/1745cecf7d.png" width="23"></a>';
-	update.insertBefore(NewButtonNCS, update.children[0]);
-	LoadFunctionNCS(LoadButtonNCS);
-	document.getElementById('new_comments_counter').onclick=function(){
-		NextCommentNCS2();
+	var loc = location.pathname.match(/^\/(blog|talk)(\/([\w\-]+)|read)?\/(\d+)/);
+	if(loc !== null) {
+		var targetType = loc[1] === "blog" ? "topic" : loc[1];
+		var targetID = loc[4];
+		var targetPath = targetType+targetID;	
+		var updateCommentsButton = document.getElementById("update-comments");
+		
+		var NewButtonNCS = document.createElement('a');
+		NewButtonNCS.id="NewButtonNCS";
+		NewButtonNCS.onclick=updateCommentsButton.onclick;
+		NewButtonNCS.innerHTML='<a><span align="center"><img src="https://cdn.everypony.ru/storage/00/44/24/2016/05/11/09c85c66fa.png" width="20"></span></a>';
+		update.insertBefore(NewButtonNCS, update.children[0]);
+		
+		if(updateCommentsButton != null) {
+			updateCommentsButton.onclick = function(e) {
+				ls.comments.load(targetID, targetType, false);
+				return false;
+			}
+		}
 	}
-	document.getElementById('update-comments').style.display = "none";
-	setTimeout(function run() {LoadFunctionNCS(LoadButtonNCS);setTimeout(run, 10000);}, 10000);
+	var LoadButtonNCS = document.getElementById("update-comments");
+	setTimeout(function run() {LoadButtonNCS.click();setTimeout(run, 10000);}, 10000);
 });
