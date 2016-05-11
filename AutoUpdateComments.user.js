@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           AutoUpdateComments
-// @version        2.0.2
+// @version        2.1
 // @updateURL	   https://goo.gl/85Hx1B
 // @downloadURL    https://goo.gl/85Hx1B
 // @grant none
@@ -25,7 +25,7 @@ $(document).ready(function(){
 		var NewButtonNCS = document.createElement('a');
 		NewButtonNCS.id="NewButtonNCS";
 		NewButtonNCS.onclick=updateCommentsButton.onclick;
-		NewButtonNCS.innerHTML='<a><span align="center"><img src="https://cdn.everypony.ru/storage/00/44/24/2016/05/11/09c85c66fa.png" width="20"></span></a>';
+		NewButtonNCS.innerHTML='<img src="https://cdn.everypony.ru/storage/00/44/24/2016/05/11/09c85c66fa.png" width="20">';
 		update.insertBefore(NewButtonNCS, update.children[0]);
 		
 		if(updateCommentsButton != null) {
