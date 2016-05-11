@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Back to the Backup 
-// @version        1.6.5
+// @version        1.6.6
 // @updateURL	   https://goo.gl/KI6FSz
 // @downloadURL    https://goo.gl/KI6FSz
 // @grant none
