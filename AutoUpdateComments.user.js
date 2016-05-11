@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name           AutoUpdateComments
-// @version        2.0.1
-// @updateURL	   https://github.com/NikitaCartes/Tabun/raw/master/AutoUpdateComments.user.js
-// @downloadURL    https://github.com/NikitaCartes/Tabun/raw/master/AutoUpdateComments.user.js
+// @version        2.0.2
+// @updateURL	   https://goo.gl/85Hx1B
+// @downloadURL    https://goo.gl/85Hx1B
 // @grant none
 // @author         NikitaCartes и ультрапуся Farxial
 // @description    Автоматическое обновление комментариев
