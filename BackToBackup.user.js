@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name           Back to the Backup 
 // @version        1.6.6
-// @updateURL	   https://goo.gl/KI6FSz
-// @downloadURL    https://goo.gl/KI6FSz
+// @updateURL	     https://github.com/NikitaCartes/Tabun/raw/master/BackToBackup.user.js
+// @downloadURL    https://github.com/NikitaCartes/Tabun/raw/master/BackToBackup.user.js
 // @grant none
 // @author         NikitaCartes & alex_f_k
 // @description    Просмотр удалённой страницы в бэкапе andreymal'а
