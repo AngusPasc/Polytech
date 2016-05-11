@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           Back to the Backup 
 // @version        1.6.6
-// @updateURL	     https://github.com/NikitaCartes/Tabun/raw/master/BackToBackup.user.js
+// @updateURL      https://github.com/NikitaCartes/Tabun/raw/master/BackToBackup.user.js
 // @downloadURL    https://github.com/NikitaCartes/Tabun/raw/master/BackToBackup.user.js
 // @grant none
 // @author         NikitaCartes & alex_f_k
