@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           AutoUpdateComments
-// @version        2.0
+// @version        2.0.1
 // @updateURL	   https://github.com/NikitaCartes/Tabun/raw/master/AutoUpdateComments.user.js
 // @downloadURL    https://github.com/NikitaCartes/Tabun/raw/master/AutoUpdateComments.user.js
 // @grant none
