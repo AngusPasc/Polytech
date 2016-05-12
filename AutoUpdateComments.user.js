@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           AutoUpdateComments
-// @version        2.2
+// @version        2.2.1
 // @updateURL	   https://goo.gl/85Hx1B
 // @downloadURL    https://goo.gl/85Hx1B
 // @grant none
@@ -20,7 +20,6 @@ $(document).ready(function(){
 	if(loc !== null) {
 		var targetType = loc[1] === "blog" ? "topic" : loc[1];
 		var targetID = loc[4];
-		var targetPath = targetType+targetID;	
 		var updateCommentsButton = document.getElementById("update-comments");
 		
 		var NewButtonNCS = document.createElement('a');
