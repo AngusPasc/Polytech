@@ -1,21 +1,20 @@
 // ==UserScript==
 // @name           AutoUpdateComments
-// @version        2.2.1
+// @version        2.3
 // @updateURL	   https://goo.gl/85Hx1B
 // @downloadURL    https://goo.gl/85Hx1B
 // @grant none
 // @author         NikitaCartes и ультрапуся Farxial
 // @description    Автоматическое обновление комментариев
 // @include        https://tabun.everypony.ru/talk/read/*
-// @include        http://tabun.everypony.ru/talk/read/*
+// @include        https://tabun.everypony.ru/talk/read/*
 // @include        https://tabun.everypony.ru/blog/*
-// @include        http://tabun.everypony.ru/blog/*
+// @include        https://tabun.everypony.ru/blog/*
 // @require        http://code.jquery.com/jquery.min.js
-// @run-at		   document-start
 // ==/UserScript==
 
 
-$(document).ready(function(){
+(function() {
 	var loc = location.pathname.match(/^\/(blog|talk)(\/([\w\-]+)|read)?\/(\d+)/);
 	if(loc !== null) {
 		var targetType = loc[1] === "blog" ? "topic" : loc[1];
@@ -38,4 +37,5 @@ $(document).ready(function(){
 	var LoadButtonNCS = document.getElementById("update-comments");
 	//LoadButtonNCS.style.display = "none";
 	setTimeout(function run() {LoadButtonNCS.click();setTimeout(run, 10000);}, 10000);
-});
+})();
+
