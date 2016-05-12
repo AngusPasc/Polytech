@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           AutoUpdateComments
-// @version        2.1.1
+// @version        2.2
 // @updateURL	   https://goo.gl/85Hx1B
 // @downloadURL    https://goo.gl/85Hx1B
 // @grant none
@@ -11,6 +11,7 @@
 // @include        https://tabun.everypony.ru/blog/*
 // @include        http://tabun.everypony.ru/blog/*
 // @require        http://code.jquery.com/jquery.min.js
+// @run-at		   document-start
 // ==/UserScript==
 
 
