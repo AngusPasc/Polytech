@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           AutoUpdateCommentsTest
-// @version        4.0
+// @version        4.1
 // @updateURL	   
 // @downloadURL    
 // @grant none
@@ -21,7 +21,7 @@
 		NewButtonNCS.innerHTML='Изменить картинку <br>';
         content.appendChild(NewButtonNCS);
         document.getElementById("PictureNCS").onclick = function(e) {
-            localStorage.setItem('PictureNCS', '"' + prompt('Введите адрес картинки в кавычках:', 'https://cdn.everypony.ru/storage/00/44/24/2016/05/11/09c85c66fa.png') + '"');
+            localStorage.setItem('PictureNCS',prompt('Введите адрес картинки в кавычках:', 'https://cdn.everypony.ru/storage/00/44/24/2016/05/11/09c85c66fa.png'));
             return false;
         }
         var NewButtonNCS2 = document.createElement('a');
@@ -51,7 +51,7 @@
 		var updateCommentsButton = document.getElementById("update-comments");
 		var NewButtonNCS = document.createElement('a');
 		NewButtonNCS.id="NewButtonNCS";
-		NewButtonNCS.innerHTML='<img src=' + localStorage.getItem('PictureNCS') + 'width="20">';
+		NewButtonNCS.innerHTML='<img src=\"' + localStorage.getItem('PictureNCS') +'\" width="20">';
 		update.insertBefore(NewButtonNCS, update.children[0]);
 		if(updateCommentsButton != null) {
 			updateCommentsButton.onclick = function(e) {
@@ -83,7 +83,7 @@
 				return false;
 			}
 			else{
-				tmpNCS.getElementsByTagName("img")[0].src="https://cdn.everypony.ru/storage/00/44/24/2016/05/11/09c85c66fa.png";
+				tmpNCS.getElementsByTagName("img")[0].src=localStorage.getItem('PictureNCS');
 				clearTimeout(timeoutIdNCS);
 				timerIdNCS = setInterval(function() {LoadButtonNCS.click();}, localStorage.getItem('TimeNCS'));
 				flagNCS=false;
