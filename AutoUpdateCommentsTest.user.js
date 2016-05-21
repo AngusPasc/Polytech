@@ -34,7 +34,7 @@
 		NewButtonNCS2.innerHTML='Изменить интервал';
         $( "#au_up_opt" ).append(NewButtonNCS2);
         document.getElementById("TimeNCS").onclick = function(e) {
-            localStorage.setItem('TimeNCS', prompt('Установить интревал обновления:', '10000'));
+           localStorage.setItem('TimeNCS',1000*prompt('Установить интревал обновления, секунд:', '10'));
             return false;
         };
 
