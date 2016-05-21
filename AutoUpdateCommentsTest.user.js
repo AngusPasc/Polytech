@@ -16,22 +16,28 @@
 
 (function() {
     if(location.pathname=='/settings/tuning/'){
-        var NewButtonNCS = document.createElement('a');
+        $( "#content" ).append(  '</br>'  );
+        $( "#content" ).append('<div id="au_up_opt" class="wrapper-content"><h2 class="page-header">Настройки автообновления комментариев</h2></div>');   
+        var NewButtonNCS = document.createElement('button');
+        NewButtonNCS.className ="button button-primary";
         NewButtonNCS.id="PictureNCS";
-		NewButtonNCS.innerHTML='Изменить картинку <br>';
-        content.appendChild(NewButtonNCS);
+		NewButtonNCS.innerHTML='Изменить картинку';
+        $( "#au_up_opt" ).append(NewButtonNCS);
         document.getElementById("PictureNCS").onclick = function(e) {
             localStorage.setItem('PictureNCS',prompt('Введите адрес картинки в кавычках:', 'https://cdn.everypony.ru/storage/00/44/24/2016/05/11/09c85c66fa.png'));
             return false;
-        }
-        var NewButtonNCS2 = document.createElement('a');
+        };
+        $( "#au_up_opt" ).append(  '&nbsp;&nbsp;'  );
+        var NewButtonNCS2 = document.createElement('button');
+        NewButtonNCS2.className ="button button-primary";
         NewButtonNCS2.id="TimeNCS";
 		NewButtonNCS2.innerHTML='Изменить интервал';
-        content.appendChild(NewButtonNCS2);
+        $( "#au_up_opt" ).append(NewButtonNCS2);
         document.getElementById("TimeNCS").onclick = function(e) {
             localStorage.setItem('TimeNCS', prompt('Установить интревал обновления:', '10000'));
             return false;
-        }
+        };
+
     }
     else{
     if(localStorage.getItem('updateNCS') == null) {
@@ -57,7 +63,7 @@
 			updateCommentsButton.onclick = function(e) {
 				ls.comments.load(targetID, targetType, false);
 				return false;
-			}
+			};
 		}
 	}
 	var LoadButtonNCS = document.getElementById("update-comments");
@@ -91,6 +97,6 @@
 				return false;
 			}
 		}
-	}
+	};
     }
 })();
