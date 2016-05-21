@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           AutoUpdateCommentsTest
-// @version        4.1
+// @version        4.1.1
 // @updateURL	   
 // @downloadURL    
 // @grant none
@@ -39,7 +39,7 @@
         alert('Скрипт был обновлён. Описание в посту от Nikitoz. Если видите надпись больше одного раза — пишите ему, как и по остальным проблемам');
     }
     if(localStorage.getItem('PictureNCS') == null) {
-        localStorage.setItem('PictureNCS', '"https://cdn.everypony.ru/storage/00/44/24/2016/05/11/09c85c66fa.png"'); 
+        localStorage.setItem('PictureNCS', 'https://cdn.everypony.ru/storage/00/44/24/2016/05/11/09c85c66fa.png'); 
     }
     if(localStorage.getItem('TimeNCS') == null) {
         localStorage.setItem('TimeNCS', '10000'); 
