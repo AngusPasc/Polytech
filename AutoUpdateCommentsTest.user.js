@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name           AutoUpdateCommentsTest
-// @version        4.1.1
+// @version        4.2
 // @updateURL	   
 // @downloadURL    
 // @grant none
-// @author         NikitaCartes и ультрапуся Farxial
+// @author         NikitaCartes, Tevssar и ультрапуся Farxial
 // @description    Автоматическое обновление комментариев
 // @include        https://tabun.everypony.ru/talk/read/*
 // @include        http://tabun.everypony.ru/talk/read/*
