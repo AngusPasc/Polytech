@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           AutoUpdateCommentsTest
-// @version        4.2
+// @version        4.3
 // @updateURL	   
 // @downloadURL    
 // @grant none
@@ -17,7 +17,7 @@
 (function() {
     if(location.pathname=='/settings/tuning/'){
         $( "#content" ).append(  '</br>'  );
-        $( "#content" ).append('<div id="au_up_opt" class="wrapper-content"><h2 class="page-header">Настройки автообновления комментариев</h2></div>');   
+        $( "#content" ).append('<div id="au_up_opt" class="wrapper-content"><h2 class="page-header">Настройки автообновления комментариев</h2></div>');
         var NewButtonNCS = document.createElement('button');
         NewButtonNCS.className ="button button-primary";
         NewButtonNCS.id="PictureNCS";
@@ -37,7 +37,29 @@
            localStorage.setItem('TimeNCS',1000*prompt('Установить интревал обновления, секунд:', '10'));
             return false;
         };
-
+        $( "#au_up_opt" ).append(  '&nbsp;&nbsp;'  );
+        var NewButtonNCS3 = document.createElement('button');
+        NewButtonNCS3.className ="button button-primary";
+        NewButtonNCS3.id="UpdateNCS";
+        NewButtonNCS3.title="Стандартная кнопка обновления комментриев";
+        $( "#au_up_opt" ).append(NewButtonNCS3);
+        if (localStorage.getItem('UpdateNCS') == 'true') {
+            document.getElementById("UpdateNCS").innerHTML='Показывать кнопку';
+        }
+        else {
+            document.getElementById("UpdateNCS").innerHTML='Скрыть кнопку';
+        }
+        document.getElementById("UpdateNCS").onclick = function(e) {
+            if (localStorage.getItem('UpdateNCS') == 'true') {
+                document.getElementById("UpdateNCS").innerHTML='Скрыть кнопку';
+                localStorage.setItem('UpdateNCS', 'false');
+            }
+            else {
+                document.getElementById("UpdateNCS").innerHTML='Показывать кнопку';
+                localStorage.setItem('UpdateNCS', 'true');
+            }
+            return false;
+        };
     }
     else{
     if(localStorage.getItem('updateNCS') == null) {
@@ -45,10 +67,13 @@
         alert('Скрипт был обновлён. Описание в посту от Nikitoz. Если видите надпись больше одного раза — пишите ему, как и по остальным проблемам');
     }
     if(localStorage.getItem('PictureNCS') == null) {
-        localStorage.setItem('PictureNCS', 'https://cdn.everypony.ru/storage/00/44/24/2016/05/11/09c85c66fa.png'); 
+        localStorage.setItem('PictureNCS', 'https://cdn.everypony.ru/storage/00/44/24/2016/05/11/09c85c66fa.png');
     }
     if(localStorage.getItem('TimeNCS') == null) {
-        localStorage.setItem('TimeNCS', '10000'); 
+        localStorage.setItem('TimeNCS', '10000');
+    }
+    if(localStorage.getItem('UpdateNCS') == null) {
+        localStorage.setItem('UpdateNCS', 'true');
     }
 	var loc = location.pathname.match(/^\/(blog|talk)(\/([\w\-]+)|read)?\/(\d+)/);
 	if(loc !== null) {
@@ -67,7 +92,9 @@
 		}
 	}
 	var LoadButtonNCS = document.getElementById("update-comments");
-	//LoadButtonNCS.style.display = "none";
+    if(localStorage.getItem('UpdateNCS') == 'true') {
+        LoadButtonNCS.style.display = "none";
+    }
 	var timerIdNCS = setInterval(function() {LoadButtonNCS.click();}, localStorage.getItem('TimeNCS'));
 	var flagNCS=false;
 	var flag2NCS=true;
