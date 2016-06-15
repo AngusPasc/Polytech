@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name           AutoUpdateCommentsTest
-// @version        4.4
-// @updateURL	   
-// @downloadURL    
+// @version        4.4.1
+// @updateURL	   https://goo.gl/85Hx1B
+// @downloadURL    https://goo.gl/85Hx1B
 // @grant none
 // @author         NikitaCartes, Tevssar и Farxial
 // @description    Автоматическое обновление комментариев
@@ -26,11 +26,11 @@
         NewButtonNCS1.innerHTML = 'Изменить картинку';
         $("#au_up_opt").append(NewButtonNCS1);
         document.getElementById("PictureNCS").onclick = function(e) {
-            localStorage.setItem('PictureNCS', prompt('Введите адрес картинки в кавычках:', 'https://cdn.everypony.ru/storage/00/44/24/2016/05/11/09c85c66fa.png'));
+            localStorage.setItem('PictureNCS', prompt('Введите адрес картинки:', 'https://cdn.everypony.ru/storage/00/44/24/2016/05/11/09c85c66fa.png'));
             return false;
         };
 
-        // Интревал обновления
+        // Интервал обновления
         $("#au_up_opt").append('&nbsp;&nbsp;');
         var NewButtonNCS2 = document.createElement('button');
         NewButtonNCS2.className = "button button-primary";
@@ -66,7 +66,7 @@
         };
     } else {
 
-        // Если каких-либо натсроек нет
+        // Если каких-либо настроек нет
         if (localStorage.getItem('updateNCS') === null) {
             localStorage.setItem('updateNCS', true);
             alert('Скрипт был обновлён. Описание в посту от Nikitoz. Если видите надпись больше одного раза — пишите ему, как и по остальным проблемам');
