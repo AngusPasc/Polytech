@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           WithoutSmile
-// @version        1.5.1
+// @version        1.6
 // @updateURL	   https://goo.gl/J9q8eb
 // @downloadURL    https://goo.gl/J9q8eb
 // @grant none
@@ -13,7 +13,8 @@
 
 $(".smp").remove();
 
-var tmp=document.getElementsByTagName("img");
+var tmp1=document.getElementById("comments");
+var tmp=tmp1.getElementsByTagName("img");
     for(var t=0;t<tmp.length;t++){
 		if ((tmp[t].height>=50)&&(tmp[t].height<=80)&&((tmp[t].width/tmp[t].height)>=0.75)&&((tmp[t].width/tmp[t].height)<=1.25)) {
 		    tmp[t].remove();
