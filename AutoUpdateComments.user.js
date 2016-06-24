@@ -1,15 +1,16 @@
 // ==UserScript==
 // @name           AutoUpdateCommentsTest
-// @version        4.5
+// @version        4.4.1
 // @updateURL	   https://goo.gl/85Hx1B
 // @downloadURL    https://goo.gl/85Hx1B
 // @grant none
 // @author         NikitaCartes, Tevssar и Farxial
 // @description    Автоматическое обновление комментариев
 // @include        https://tabun.everypony.ru/talk/read/*
+// @include        http://tabun.everypony.ru/talk/read/*
 // @include        https://tabun.everypony.ru/blog/*
+// @include        http://tabun.everypony.ru/blog/*
 // @include        https://tabun.everypony.ru/settings/tuning/
-// @include        https://ponyhawks.ru/*
 // @require        http://code.jquery.com/jquery.min.js
 // ==/UserScript==
 (function() {
@@ -17,8 +18,8 @@
     if (location.pathname == '/settings/tuning/') {
 
         // Адрес картинки
-        $("#content-wrapper").append('</br>');
-        $("#content-wrapper").append('<div id="au_up_opt" class="wrapper-content"><h2 class="page-header">Настройки автообновления комментариев</h2></div>');
+        $("#content").append('</br>');
+        $("#content").append('<div id="au_up_opt" class="wrapper-content"><h2 class="page-header">Настройки автообновления комментариев</h2></div>');
         var NewButtonNCS1 = document.createElement('button');
         NewButtonNCS1.className = "button button-primary";
         NewButtonNCS1.id = "PictureNCS";
