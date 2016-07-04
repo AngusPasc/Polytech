@@ -1,6 +1,6 @@
 // ==UserScript==
-// @name           AutoUpdateCommentsTest
-// @version        4.4.1
+// @name           AutoUpdateComments
+// @version        4.4.2
 // @updateURL	   https://goo.gl/85Hx1B
 // @downloadURL    https://goo.gl/85Hx1B
 // @grant none
