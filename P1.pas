@@ -29,13 +29,18 @@ begin
 	begin
 		for i2:=1 to 40 do
 		begin
-			if (Ord(mas[i1, i2]) <> 10) then
+			c:=mas[i1, i2];
+			if (Ord(c) = 26) then
 			begin
-				write(mas[i1, i2]);
+				break;
 			end
+			else if (Ord(c) <> 10) then
+			begin
+				write(c);
+			end 
 			else
 			begin
-				write(mas[i1, i2]);
+				write(c);
 				break;
 			end;
 		end;
@@ -47,13 +52,18 @@ begin
 	begin
 		for i2:=1 to 40 do
 		begin
-			if (Ord(mas[i1, i2]) <> 10) then
+			c:=mas[i1, i2];
+			if (Ord(c) = 26) then
 			begin
-				write(mas[i1, i2]);
+				break;
 			end
+			else if (Ord(c) <> 10) then
+			begin
+				write(c);
+			end 
 			else
 			begin
-				write(mas[i1, i2]);
+				write(c);
 				break;
 			end;
 		end;
