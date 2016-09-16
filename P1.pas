@@ -12,14 +12,14 @@ begin
 		for i2:=1 to 40 do
 		begin
 			read(c);
-			if (Ord(c) <> 12) then
+			if (Ord(c) <> 10) then
 			begin
 				mas[i1, i2]:=c;
 			end
 			else
 			begin
-				mas[i1, i2]:=Chr(12);
-				Continue;
+				mas[i1, i2]:=Chr(10);
+				break;
 			end;
 		end;
 	end;
@@ -29,15 +29,14 @@ begin
 	begin
 		for i2:=1 to 40 do
 		begin
-			read(c);
-			if (Ord(c) <> 12) then
+			if (Ord(mas[i1, i2]) <> 10) then
 			begin
 				write(mas[i1, i2]);
 			end
 			else
 			begin
 				write(mas[i1, i2]);
-				Continue;
+				break;
 			end;
 		end;
 	end;
@@ -48,15 +47,14 @@ begin
 	begin
 		for i2:=1 to 40 do
 		begin
-			read(c);
-			if (Ord(c) <> 12) then
+			if (Ord(mas[i1, i2]) <> 10) then
 			begin
 				write(mas[i1, i2]);
 			end
 			else
 			begin
 				write(mas[i1, i2]);
-				Continue;
+				break;
 			end;
 		end;
 	end;
