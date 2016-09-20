@@ -1,94 +1,65 @@
 Program program1;
-    var i1, i2, i3, p1, p2, p3, n, s:integer;
-	type ta = array [0..11, 0..41] of char;
-	var mas, mas1: ta;
-	var c: char;
-	procedure FileWrite(c: char; n: integer; mas : ta);
+    var i1, i2, p1, n: integer;
+	type String41 = string[41];
+	var name1, name2: String41;
+	type masString = array [0..11] of string[41];
+	var mas: masString;
+	procedure FileWrite(n: integer; mas : masString);
 	begin
 		for i1:=1 to n do
 		begin
-			for i2:=1 to 40 do
-			begin
-				c:=mas[i1, i2];
-				if (Ord(c) = 26) then
-				begin
-					break;
-				end
-				else if (Ord(c) <> 10) then
-				begin
-					write(c);
-				end 
-				else
-				begin
-					write(c);
-					break;
-				end;
-			end;
+			writeln(mas[i1]);
 		end;
+	end;
+	
+	Function ExtractWord(mas: masString; i1: integer) : String41;
+	var i:integer;
+		name : String41;
+	begin
+		i:=0;
+		while (mas[i1][i]<>' ') do
+		begin
+			i:=i+1;
+		end;
+		i:=i+1;
+		name:='';
+		while (mas[i1][i]<>' ') do
+		begin
+			name:=name+mas[i1][i];
+			i:=i+1;
+		end;
+		ExtractWord := name;
 	end;
 begin
 	n:=10;
-	i3:=1;
 	assign(input, 'C:\Users\nikic\Desktop\in.txt');
 	reset(input);
 	for i1:=1 to n do
 	begin
-		for i2:=1 to 40 do
-		begin
-			read(c);
-			if (s=1) then
-			begin
-				mas1[i1, i3]:=c;
-				i3:=i3+1;
-			end;
-			if (c=' ') then
-			begin
-				s:=s+1;
-				mas[i1, i2]:=c;
-			end
-			else if (Ord(c) <> 10) then
-			begin
-				mas[i1, i2]:=c;
-			end
-			else
-			begin
-				mas[i1, i2]:=Chr(10);
-				s:=0;
-				i3:=1;
-				break;
-			end;
-		end;
+		readln(mas[i1]);
 	end;
 	assign(output, 'C:\Users\nikic\Desktop\out.txt');
 	rewrite(output);
-	FileWrite(c, n, mas);
+	FileWrite(n, mas);
 	writeln('');
 	writeln('');
+	
 	for i1:=1 to n-1 do
 	begin
 		for i2:=i1+1 to n do
 		begin
-			for i3:=1 to 40 do
+			name1 := ExtractWord(mas, i1);
+			name2 := ExtractWord(mas, i2);
+			if (name1 = name2) then
 			begin
-				if (mas1[i1,i3] <> mas1[i2,i3]) then
+				for p1:=i2 to 9 do
 				begin
-					break;
-				end
-				else if (mas1[i1,i3]=' ') then
-				begin
-					for p1:=i2 to 9 do
-					begin
-						for p2:=1 to 40 do
-						begin
-							mas[p1, p2]:=mas[p1+1, p2];
-							mas1[p1, p2]:=mas1[p1+1, p2];
-						end;
-					end;
-					n:=n-1;
-					break;
+					mas[p1]:=mas[p1+1];
 				end;
+				n:=n-1;
+				break;
 			end;
 		end;
 	end;
-	FileWrite(c, n, mas);
+	FileWrite(n, mas);
 end.
