@@ -1,7 +1,9 @@
 Program program1;
     var i1, i2, i, k: integer;
 	var c: char;
-	var mas: array [1..11, 1..36] of char;
+	type typemas = array [1..36] of char;
+	var mas: array [1..11] of typemas;
+	var b: typemas;
 	var t:boolean;
 	
 begin
@@ -45,14 +47,10 @@ begin
 					break;
 				end;
 			end;
-			if t = true then
-			begin
-				for k:=1 to 35 do
-				begin
-					c:=mas[i1, k];
-					mas[i1, k]:=mas[i1+1, k];
-					mas[i1+1, k]:=c;
-				end;
+			begin	
+				b:=mas[i1];
+				mas[i1]:=mas[i1+1];
+				mas[i1+1]:=b;
 			end;
 		end;
 	end;
@@ -61,6 +59,7 @@ begin
 	begin
 		write(mas[1, i1]);
 	end;
+	writeln('');
 	for i:=9 downto 1 do {сортировка пузырьком по дате}
 	begin
 		for i1:=1 to i do
@@ -83,13 +82,10 @@ begin
 				end;
 			end;
 			if t = true then
-			begin
-				for k:=1 to 35 do
-				begin
-					c:=mas[i1, k];
-					mas[i1, k]:=mas[i1+1, k];
-					mas[i1+1, k]:=c;
-				end;
+			begin	
+				b:=mas[i1];
+				mas[i1]:=mas[i1+1];
+				mas[i1+1]:=b;
 			end;
 		end;
 	end;
