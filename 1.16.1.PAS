@@ -73,11 +73,8 @@ begin
 				begin
 					for p1:=i2 to 9 do
 					begin
-						for p2:=1 to 40 do
-						begin
-							mas[p1, p2]:=mas[p1+1, p2];
-							mas1[p1, p2]:=mas1[p1+1, p2];
-						end;
+						mas[p1]:=mas[p1+1];
+						mas1[p1]:=mas1[p1+1];
 					end;
 					n:=n-1;
 					break;
