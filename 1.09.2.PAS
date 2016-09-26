@@ -1,5 +1,5 @@
 Program program1;
-    var i1, i2, i: integer;
+	var i1, i2, i: integer;
 	type mastype = array [1..11] of string;
 	var mas: mastype;
 	var t:boolean;
