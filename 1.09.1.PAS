@@ -47,6 +47,7 @@ begin
 					break;
 				end;
 			end;
+			if t = true then
 			begin	
 				b:=mas[i1];
 				mas[i1]:=mas[i1+1];
