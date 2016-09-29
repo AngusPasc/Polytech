@@ -16,7 +16,7 @@ Program program1;
 	var i:integer;
 		name : String41;
 	begin
-		i:=2;
+		i:=1;
 		while (mas[i1][i]<>' ') do
 		begin
 			i:=i+1;
