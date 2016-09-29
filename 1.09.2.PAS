@@ -1,40 +1,67 @@
 Program program1;
-	var i1, i2, i: integer;
-	type mastype = array [1..11] of string;
-	var mas: mastype;
-	var t:boolean;
-	
-	procedure BubbleSort(i2: integer; var mas: mastype); 
-	{Сортировка строк. Для сравнения используются символы с i2}
-	var mas1: string;
+    var i1, i2, p1, n: integer;
+	type String41 = string[41];
+	var name1, name2: String41;
+	type masString = array [0..11] of string[41];
+	var mas: masString;
+	procedure FileWrite(n: integer; mas : masString);
 	begin
-		for i:=9 downto 1 do 
+		for i1:=1 to n do
 		begin
-			for i1:=1 to i do
-			begin
-				if Copy(mas[i1], i2, Length(mas[i1])-i2+1) > Copy(mas[i1+1], i2, Length(mas[i1])-i2+1) then
-				begin
-					mas1:=mas[i1];
-					mas[i1]:=mas[i1+1];
-					mas[i1+1]:=mas1;
-				end;
-			end;
+			writeln(mas[i1]);
 		end;
 	end;
 	
+	Function ExtractWord(mas: masString; i1: integer) : String41;
+	var i:integer;
+		name : String41;
+	begin
+		i:=2;
+		while (mas[i1][i]<>' ') do
+		begin
+			i:=i+1;
+		end;
+		i:=i+1;
+		name:='';
+		while (mas[i1][i]<>' ') do
+		begin
+			name:=name+mas[i1][i];
+			i:=i+1;
+		end;
+		ExtractWord := name;
+	end;
 begin
+	n:=10;
 	assign(input, 'C:\Users\nikic\Desktop\in.txt');
-	assign(output, 'C:\Users\nikic\Desktop\out.txt');
 	reset(input);
-	rewrite(output);
-	for i1:=1 to 10 do
+	for i1:=1 to n do
 	begin
 		readln(mas[i1]);
-		writeln(mas[i1]);
 	end;
-	writeln('');  {Пустая строка для читаемости}
-	BubbleSort (1, mas);
-	writeln('First in alphabet: ', mas[1]);
-	BubbleSort (29, mas);
-	writeln('The most young: ', mas[1]);
+	assign(output, 'C:\Users\nikic\Desktop\out.txt');
+	rewrite(output);
+	FileWrite(n, mas);
+	writeln('');
+	writeln('');
+	
+	for i1:=1 to n-1 do
+	begin
+	  i2:=i1+1;
+		while i2<=n do
+		begin
+			name1 := ExtractWord(mas, i1);
+			name2 := ExtractWord(mas, i2);
+			if (name1 = name2) then
+			begin
+				for p1:=i2 to 9 do
+				begin
+					mas[p1]:=mas[p1+1];
+				end;
+			  n:=n-1;
+        		i2:=i2-1;
+			end;
+      		i2:=i2+1;
+    		end;
+	end;
+	FileWrite(n, mas);
 end.
