@@ -61,7 +61,7 @@ begin
 	writeln('');
 	for i1:=1 to n-1 do
 	begin
-    i2:=i1+1;
+   	i2:=i1+1;
 		while i2<=n do
 		begin
 			for i3:=1 to 40 do
