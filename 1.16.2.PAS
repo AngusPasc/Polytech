@@ -16,7 +16,7 @@ Program program1;
 	var i:integer;
 		name : String41;
 	begin
-		i:=0;
+		i:=2;
 		while (mas[i1][i]<>' ') do
 		begin
 			i:=i+1;
@@ -46,7 +46,8 @@ begin
 	
 	for i1:=1 to n-1 do
 	begin
-		for i2:=i1+1 to n do
+	  i2:=i1+1;
+		while i2<=n do
 		begin
 			name1 := ExtractWord(mas, i1);
 			name2 := ExtractWord(mas, i2);
@@ -56,10 +57,11 @@ begin
 				begin
 					mas[p1]:=mas[p1+1];
 				end;
-				n:=n-1;
-				break;
+			  n:=n-1;
+        		i2:=i2-1;
 			end;
-		end;
+      		i2:=i2+1;
+    		end;
 	end;
 	FileWrite(n, mas);
 end.
