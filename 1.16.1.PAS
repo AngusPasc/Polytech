@@ -61,7 +61,8 @@ begin
 	writeln('');
 	for i1:=1 to n-1 do
 	begin
-		for i2:=i1+1 to n do
+    i2:=i1+1;
+		while i2<=n do
 		begin
 			for i3:=1 to 40 do
 			begin
@@ -77,9 +78,11 @@ begin
 						mas1[p1]:=mas1[p1+1];
 					end;
 					n:=n-1;
+					i2:=i2-1;
 					break;
 				end;
 			end;
+		i2:=i2+1;
 		end;
 	end;
 	for i1:=1 to n do
