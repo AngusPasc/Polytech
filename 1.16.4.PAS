@@ -1,5 +1,5 @@
 Program program1;
-	uses 1164UNIT;
+	uses MyLib1;
 	var fio: fiotype2;
 	var i, i1, i2, p1, n: integer;
 	var c: char;
