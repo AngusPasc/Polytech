@@ -1,13 +1,14 @@
-Unit 1164UNIT;
-Interface 
+Unit mylib1;
+interface
 	Type fiotype1 = record
-		name1: string;
-		name2: string;
-		name3: string;
+		name1: string[10];
+		name2: string[10];
+		name3: string[10];
 	end;
 	type fiotype2 = array [1..11] of fiotype1;
 	procedure FileWrite(n: integer; fio : fiotype2);
-implementation 
+	
+implementation
 	procedure FileWrite; 
 	var i:integer;
 	begin
@@ -16,4 +17,5 @@ implementation
 			writeln(fio[i].name1 + ' ' + fio[i].name2 + ' ' + fio[i].name3);
 		end;
 	end;
+begin
 end.
