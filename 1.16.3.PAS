@@ -1,20 +1,19 @@
 Program program1;
 	Type fiotype1 = record
-		name1: string;
-		name2: string;
-		name3: string;
+		name1: string[4];
+		name2: string[4];
+		name3: string[4];
 	end;
 	type fiotype2 = array [1..11] of fiotype1;
 	var fio: fiotype2;
 	var i, i1, i2, p1, n: integer;
-	var c: char;
-	var str1, str2: string;
+	var f: file of fiotype1;
 	procedure FileWrite(n: integer; fio : fiotype2);
 	var i:integer;
 	begin
 		for i:=1 to n do
 		begin
-			writeln(fio[i].name1 + ' ' + fio[i].name2 + ' ' + fio[i].name3);
+			writeln(fio[i].name1, fio[i].name2, fio[i].name3);
 		end;
 	end;
 
@@ -24,26 +23,24 @@ begin
 	reset(input);
 	for i:=1 to n do
 	begin
-		read(c);
-		while (NOT(c=' ')) do
-		begin
-			fio[i].name1 := fio[i].name1 + c;
-			read(c);
-		end;
-		read(c);
-		while (NOT(c=' ')) do
-		begin
-			fio[i].name2 := fio[i].name2 + c;
-			read(c);
-		end;
-		read(c);
-		while (NOT(Ord(c) = 13)) do
-		begin
-			fio[i].name3 := fio[i].name3 + c;
-			read(c);
-		end;
-		read(c);
+		readln(fio[i].name1, fio[i].name2, fio[i].name3);
 	end;
+	
+	Assign(f,'type.out');
+	Rewrite(f);
+	for i:=1 to n do 
+	begin
+		Write(f, fio[i]);
+	end;
+	Close(f);
+	
+	Assign(f,'type.out');
+	Reset(f);
+	while not Eof(f) do 
+	begin
+		Read(f, fio[i]);
+	end;
+  
 	assign(output, 'C:\Users\nikic\Desktop\OUT.TXT');
 	rewrite(output);
 	FileWrite(n, fio);
