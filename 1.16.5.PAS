@@ -1,19 +1,19 @@
 Program program1;
-	Type fiotype1 = record
+	Type gg = ^fiotype1;
+	fiotype1 = record
 		name1: string[4];
 		name2: string[4];
 		name3: string[4];
+		next: gg;
 	end;
-	type fiotype2 = array [1..11] of fiotype1;
-	var fio: fiotype2;
 	var i, i1, i2, p1, n: integer;
-	var f: file of fiotype1;
-	procedure FileWrite(n: integer; fio : fiotype2);
-	var i:integer;
+	var ez, first, fio, abc: gg;
+	procedure FileWrite(aaa : gg);
 	begin
-		for i:=1 to n do
-		begin
-			writeln(fio[i].name1, fio[i].name2, fio[i].name3);
+		While aaa <> nil do
+		Begin
+			writeln(aaa^.name1, aaa^.name2, aaa^.name3);
+			aaa:= aaa^.next;
 		end;
 	end;
 
@@ -21,47 +21,40 @@ begin
 	n:=10;
 	assign(input, 'C:\Users\nikic\Desktop\IN.TXT');
 	reset(input);
+	new(fio);
+	first:= nil;
 	for i:=1 to n do
 	begin
-		readln(fio[i].name1, fio[i].name2, fio[i].name3);
+		fio^.next:= first;
+		readln(fio^.name1, fio^.name2, fio^.name3);
+		first:= fio;
+		new(fio);
 	end;
-	
-	Assign(f,'type.out');
-	Rewrite(f);
-	for i:=1 to n do 
-	begin
-		Write(f, fio[i]);
-	end;
-	Close(f);
-	
-	Assign(f,'type.out');
-	Reset(f);
-	while not Eof(f) do 
-	begin
-		Read(f, fio[i]);
-	end;
-  
 	assign(output, 'C:\Users\nikic\Desktop\OUT.TXT');
 	rewrite(output);
-	FileWrite(n, fio);
+	fio:=first;
+	ez:=first;
+	FileWrite(first);
 	writeln('');
 	writeln('');
-	for i1:=1 to n-1 do
+	while fio^.next <> nil do
 	begin
-	  i2:=i1+1;
-		while i2<=n do
+		ez:=fio^.next;
+		while ez <> nil do
 		begin
-			if (fio[i1].name2 = fio[i2].name2) then
+			if (fio^.name2 = ez^.name2) then
 			begin
-				for p1:=i2 to 9 do
+				abc:=fio;
+				while abc^.next <> ez do
 				begin
-					fio[p1] := fio[p1+1];
+					abc:= abc^.next;
 				end;
-				n:=n-1;
-				i2:=i2-1;
+				abc^.next:=ez^.next;
+				ez:=abc;
 			end;
-		i2:=i2+1;
+		ez:= ez^.next;
 		end;
+	fio:=fio^.next;
 	end;
-	FileWrite(n, fio);
+	FileWrite(first);
 end.
