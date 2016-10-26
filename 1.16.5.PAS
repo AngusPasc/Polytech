@@ -22,13 +22,17 @@ begin
 	assign(input, 'C:\Users\nikic\Desktop\IN.TXT');
 	reset(input);
 	new(fio);
-	first:= nil;
-	for i:=1 to n do
+	first:= fio;
+	ez:=fio;
+	readln(fio^.name1, fio^.name2, fio^.name3);
+	fio^.next:=nil;
+	for i:=2 to n do
 	begin
-		fio^.next:= first;
-		readln(fio^.name1, fio^.name2, fio^.name3);
-		first:= fio;
 		new(fio);
+		readln(fio^.name1, fio^.name2, fio^.name3);
+		fio^.next:=nil;
+		ez^.next:= fio;
+		ez:=fio;
 	end;
 	assign(output, 'C:\Users\nikic\Desktop\OUT.TXT');
 	rewrite(output);
