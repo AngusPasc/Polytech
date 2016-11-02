@@ -24,6 +24,7 @@ begin
 	If  GraphResult = 0 then
 	begin
 		i1:=0;
+		
 		GetTime(H, Mi, Sec, S100);
 		i:= 3600*(H/1) + 60*Mi + Sec + S100/100;
 		SetBkColor(15);
@@ -39,11 +40,12 @@ begin
 		Size := ImageSize(120, y, 520, 440);
 		GetMem(P2, Size);
 		GetImage(120, y, 520, 440, P2^);
-		while true do
+		repeat
 		begin
+			if keypressed then exit;
 			GetTime(H, Mi, Sec, S100);
 			i:= 3600*(H/1) + 60*Mi + Sec + S100/100;
-			if i - 0.1 >= i1 then
+			{if i - 0.1 >= i1 then}
 			begin
 				i1:=i;
 				PutImage(120, 40, P1^, NormalPut);
@@ -57,6 +59,7 @@ begin
 				Line (x, y, CordX(i, 164), CordY(i, 164)); {Second}
 			end;
 		end;
+		until false;
 	readln;
 	closeGraph;
 	end
