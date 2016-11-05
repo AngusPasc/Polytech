@@ -23,16 +23,14 @@ begin
 	reset(input);
 	new(fio);
 	first:= fio;
-	ez:=fio;
 	readln(fio^.name1, fio^.name2, fio^.name3);
 	fio^.next:=nil;
 	for i:=2 to n do
 	begin
-		new(fio);
+		new(fio^.next);
+		fio:=fio^.next;
 		readln(fio^.name1, fio^.name2, fio^.name3);
 		fio^.next:=nil;
-		ez^.next:= fio;
-		ez:=fio;
 	end;
 	assign(output, 'C:\Users\nikic\Desktop\OUT.TXT');
 	rewrite(output);
