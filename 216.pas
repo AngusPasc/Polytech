@@ -76,19 +76,10 @@ begin
 	reset(input);
 	new(fio);
 	first:= fio;
-	ez:=fio;
-	read(c);
-	fio^.name1:='';
-	while c <> '.' do
-	begin
-		fio^.name1:=fio^.name1+c;
-		read(c);
-	end;
-	readln(fio^.name2);
-	fio^.next:=nil;
 	while not (eof(input)) do
 	begin
-		new(fio);
+		new(fio^.next);
+		fio:=fio^.next;
 		read(c);
 		fio^.name1:='';
 		while Not (c='.') do
@@ -98,9 +89,8 @@ begin
 		end;
 		readln(fio^.name2);
 		fio^.next:=nil;
-		ez^.next:= fio;
-		ez:=fio;
 	end;
+	first:=first^.next;
 	assign(output, 'C:\Users\nikic\Desktop\OUT.TXT');
 	rewrite(output);
 	FileWrite(first);
