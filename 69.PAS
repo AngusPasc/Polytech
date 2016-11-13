@@ -1,11 +1,11 @@
 Program program1;
 	Uses graph, Crt, WinDOS;
   Const x=320;
-y=240;
-r=191;
+		y=240;
+		r=191;
 
 	var D, m, DelayTime: integer;
-	Var H, Mi, Sec, S100: word;
+	Var H, Mi, Sec, S100, intkey: word;
 	var i, i1: real;
 	var str, str1: string;
 	Function CordX(minute: real; r: integer) : integer;
@@ -132,11 +132,12 @@ r=191;
 		end;
 	end;
 	
-	Procedure RealTime(DelayTime: integer);
-	var i: real;
+	Procedure RealTime(DelayTime: integer; var intkey: word);
+	var i, k: real;
 	Var S100, TimeQuestion, H, Mi, Sec, UserDelay: word;
 	var P1, P2 : Pointer;
 	begin
+		k:=1;
 		TimeQuestion:= RealTimeQuestion;
 		str:= TextArea('____ms.');
 		Val((Copy(str, 1, 4)), UserDelay, UserDelay);
@@ -167,8 +168,18 @@ r=191;
 		begin
 			if keypressed then 
 			begin
-				while keypressed do readkey; 
-				break;
+				intkey:= Ord(readkey);
+				if intkey = 0 then
+				begin
+					intkey:= Ord(readkey);
+					while keypressed do readkey; 
+					if intkey = 72 then k:=k*2
+					else if intkey = 80 then k:=k/2
+					else if intkey = 77 then k:=k*1.1
+					else if intkey = 75 then k:=k/1.1
+					else break;
+				end
+				else break;
 			end;
 			Delay(UserDelay);
 			if TimeQuestion = 1 then
@@ -178,7 +189,7 @@ r=191;
 			end
 			else
 			begin
-				i:= i + DelayTime/1000 + UserDelay/1000;
+				i:= i + k* ((DelayTime + UserDelay)/1000);
 			end;
 			PutImage(120, 40, P1^, NormalPut);
 			PutImage(120, y, P2^, NormalPut);
@@ -196,12 +207,12 @@ r=191;
 begin
 	D:= detect;
 	InitGraph(D, m, 'C:\Program Files (x86)\SchoolPak\pak\BP\EGAVGA.BGI');
-	If  GraphResult = 0 then
+	DelayTime:= SetDelay;
+	repeat
 	begin
-		DelayTime:= SetDelay;
-		RealTime(DelayTime);
-		readln;
-		closeGraph;
-	end
-	else writeln ('Error');
+		if intkey = 27 then break;
+		RealTime(DelayTime, intkey);
+	end;
+	until false;
+	closeGraph;
 end.
