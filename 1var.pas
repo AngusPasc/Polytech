@@ -8,7 +8,6 @@ Program program1;
 	
 
 	procedure P1(A : link);
-	var B:link;
 	begin
 		while not eof(input) do
 		begin
@@ -41,22 +40,24 @@ Program program1;
 	end;
 	
 	procedure P2(A : link);
-	var B: link;
+	var B, min: link;
 		C: char;
 	begin
 		while A^.next <> nil do
 		begin
+			min:= A;
 			B:=A^.next;
 			while B <> nil do
 			begin
-				if A^.data < B^.data then
+				if B^.data < min^.data then
 				begin
-					C:=B^.data;
-					B^.data:=A^.data;
-					A^.data:=C;
+					min:=B;
 				end;
 				B:=B^.next;
 			end;
+			C:=min^.data;
+			min^.data:=A^.data;
+			A^.data:=C;
 			A:=A^.next;
 		end;
 	end;
