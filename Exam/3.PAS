@@ -1,3 +1,4 @@
+{123, ABC, GHD}
 Program pr3;
 	type book = ^rec;
 	rec = record
