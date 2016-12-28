@@ -1,3 +1,4 @@
+{ABC 123}
 Program pr5;
 	type fio = ^rec;
 	rec = record
